@@ -1,0 +1,114 @@
+# HLP Preprocessor Configuration File
+# This file contains all configurable parameters for the demo script
+# Command line arguments will override these settings
+
+# =============================================================================
+# Input/Output Settings
+# =============================================================================
+# Path to input image (main camera view of Lego pile)
+image: "data/snapshot-sweep2E_dualarm_v1-0-0.png"
+
+# Path to goal shape image (binary or grayscale)
+goal: "data/E.png"
+
+# Path to save output image
+output: "data/E_both.png"
+
+# Rendering mode: 'none', 'goal', 'residual', 'goal+residual'
+render: "goal+residual"
+
+# =============================================================================
+# Optimizer Settings
+# =============================================================================
+# Optimization algorithm: 'grid', 'scipy', 'differential_evolution', 'hybrid'
+# Recommended: 'hybrid' (balance of speed and quality)
+optimizer: "hybrid"
+
+# Grid search resolution (higher = more precise but slower)
+# Only used for 'grid' and 'hybrid' optimizers
+grid_resolution: 200000
+
+# =============================================================================
+# Cost Function Weights
+# =============================================================================
+# Weight for fill cost (how much to fill missing blocks)
+lambda_fill: 1.0
+
+# Weight for remove cost (how much to remove extra blocks)
+lambda_remove: 1.0
+
+# Weight for edge alignment (how well goal edges align with pile edges)
+lambda_edge: 0.5
+
+# Weight for sweep difficulty (penalizes deep/difficult-to-reach blocks)
+lambda_sweep: 1.0
+
+# =============================================================================
+# Optimization Parameters
+# =============================================================================
+# Sigma for edge cost Gaussian kernel (controls edge influence radius)
+sigma_edge: 10.0
+
+# Exponent for sweep cost distance field (higher = stronger penalty for depth)
+alpha_sweep: 2.0
+
+# Minimum allowed scale factor for goal shape
+scale_min: 0.3
+
+# Maximum allowed scale factor for goal shape
+scale_max: 1.5
+
+# =============================================================================
+# Rendering Colors (RGB format)
+# =============================================================================
+# Color for goal shape overlay [R, G, B]
+# Default: [0, 255, 0] = bright green
+color_goal: [0, 255, 0]
+
+# Color for residual/sweep area overlay [R, G, B]
+# Default: [255, 0, 255] = bright magenta
+color_residual: [255, 0, 255]
+
+# Overlay transparency (0.0 = fully transparent, 1.0 = fully opaque)
+alpha: 0.5
+
+# =============================================================================
+# Mask Smoothing Parameters
+# =============================================================================
+# Morphological kernel size (must be odd number)
+# Larger values = more aggressive smoothing
+smooth_kernel: 5
+
+# Gaussian blur sigma for additional smoothing
+# Larger values = stronger blur
+smooth_sigma: 2.0
+
+# =============================================================================
+# SAM3 Segmentation Parameters
+# =============================================================================
+# Text prompt for SAM3 segmentation
+prompt: "red object"
+
+# SAM3 confidence threshold (0.0 - 1.0)
+# Lower = more permissive, higher = more strict
+confidence: 0.3
+
+# Device for SAM3 inference: 'cuda' or 'cpu'
+device: "cuda"
+
+# =============================================================================
+# Debug Options
+# =============================================================================
+# Test SAM segmentation mode
+# When true: outputs SAM segmented mask overlaid on original image, skipping optimization
+# Useful for debugging SAM segmentation and smoothing performance
+test_sam: false
+
+# =============================================================================
+# Additional Options
+# =============================================================================
+# Save intermediate mask files
+save_masks: false
+
+# Verbose output
+verbose: true
