@@ -590,7 +590,8 @@ class ScipyOptimizer(BaseOptimizer):
             x0,
             method=self.method,
             bounds=bounds,
-            options={'maxiter': 500}
+            # TODO:
+            options={'maxiter': 5000}
         )
 
         best_params = TransformParams.from_array(result.x)
@@ -625,7 +626,8 @@ class DifferentialEvolutionOptimizer(BaseOptimizer):
         result = differential_evolution(
             objective,
             bounds,
-            maxiter=100,
+            # TODO:
+            maxiter=1000,
             seed=42,
             workers=1,
             updating='deferred'
@@ -683,7 +685,8 @@ class HybridOptimizer(BaseOptimizer):
             coarse_params.to_array(),
             method='L-BFGS-B',
             bounds=bounds,
-            options={'maxiter': 200}
+            # TODO:
+            options={'maxiter': 2000}
         )
 
         best_params = TransformParams.from_array(result.x)

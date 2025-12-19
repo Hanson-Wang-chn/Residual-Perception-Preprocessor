@@ -9,10 +9,11 @@
 image: "data/snapshot-sweep2E_dualarm_v1-0-0.png"
 
 # Path to goal shape image (binary or grayscale)
-goal: "data/E.png"
+goal: "data/Z.png"
 
+# TODO:
 # Path to save output image
-output: "data/E_both.png"
+output: "data/Z_both.png"
 
 # Rendering mode: 'none', 'goal', 'residual', 'goal+residual'
 render: "goal+residual"
@@ -21,8 +22,8 @@ render: "goal+residual"
 # Optimizer Settings
 # =============================================================================
 # Optimization algorithm: 'grid', 'scipy', 'differential_evolution', 'hybrid'
-# Recommended: 'hybrid' (balance of speed and quality)
-optimizer: "hybrid"
+optimizer: "differential_evolution"
+# optimizer: "hybrid"
 
 # Grid search resolution (higher = more precise but slower)
 # Only used for 'grid' and 'hybrid' optimizers
@@ -31,17 +32,18 @@ grid_resolution: 20000
 # =============================================================================
 # Cost Function Weights
 # =============================================================================
+# TODO:
 # Weight for fill cost (how much to fill missing blocks)
-lambda_fill: 1.0
+lambda_fill: 2.0
 
 # Weight for remove cost (how much to remove extra blocks)
 lambda_remove: 1.0
 
 # Weight for edge alignment (how well goal edges align with pile edges)
-lambda_edge: 0.5
+lambda_edge: 0.0
 
 # Weight for sweep difficulty (penalizes deep/difficult-to-reach blocks)
-lambda_sweep: 1.0
+lambda_sweep: 0.0
 
 # =============================================================================
 # Optimization Parameters
