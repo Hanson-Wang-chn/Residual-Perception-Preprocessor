@@ -26,7 +26,7 @@ optimizer: "hybrid"
 
 # Grid search resolution (higher = more precise but slower)
 # Only used for 'grid' and 'hybrid' optimizers
-grid_resolution: 200000
+grid_resolution: 20000
 
 # =============================================================================
 # Cost Function Weights
